@@ -84,15 +84,33 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Basic validation and submission simulation
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
 
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
             btn.disabled = true;
 
-            // Simulate network request
-            setTimeout(() => {
+            // Form payload
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                _subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                _captcha: 'false',
+                _template: 'table'
+            };
+
+            // Send via FormSubmit AJAX API
+            fetch("https://formsubmit.co/ajax/estermariapaul8@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
                 btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
                 btn.classList.remove('btn-primary');
                 btn.style.backgroundColor = '#10B981'; // Green color
@@ -108,7 +126,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.classList.add('btn-primary');
                     btn.style = ''; // Reset inline styles
                 }, 3000);
-            }, 1500);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                btn.innerHTML = 'Error! Please try again. <i class="fas fa-exclamation-triangle"></i>';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 3000);
+            });
         });
+    }
+
+    // --- 5. Typing Effect for Title ---
+    const titleElement = document.querySelector('.title');
+    if (titleElement) {
+        const text = titleElement.innerText;
+        titleElement.innerText = '';
+        // Add cursor
+        titleElement.style.borderRight = '3px solid var(--accent)';
+        titleElement.style.paddingRight = '5px';
+        titleElement.style.whiteSpace = 'nowrap';
+        titleElement.style.overflow = 'hidden';
+        
+        let i = 0;
+        setTimeout(() => {
+            const typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    titleElement.innerText += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    // Blinking cursor
+                    setInterval(() => {
+                        titleElement.style.borderColor = titleElement.style.borderColor === 'transparent' ? 'var(--accent)' : 'transparent';
+                    }, 500);
+                }
+            }, 60);
+        }, 1000); // Wait for fade animations
     }
 });

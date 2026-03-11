@@ -7,7 +7,7 @@
     <title>Ester Maria Paul | Data Analyst & Data Science Enthusiast</title>
     <meta name="description"
         content="Portfolio of Ester Maria Paul, Data Analyst specializing in machine learning, dashboarding, and actionable insights.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <a href="#hero">EMP<span>.</span></a>
+                <!-- <a href="#hero">EMP<span></span></a> -->
             </div>
             <nav class="nav-links">
                 <a href="#about">About</a>
@@ -45,20 +45,28 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container hero-content">
-                <p class="greeting fade-up">Hi, my name is</p>
-                <h1 class="name fade-up delayed-1">Ester Maria Paul.</h1>
-                <h2 class="title fade-up delayed-2">Data Analyst | Data Science Enthusiast</h2>
-                <p class="tagline fade-up delayed-3">
-                    "Turning raw data into actionable insights through <span class="highlight">analytics</span>, <span
-                        class="highlight">machine learning</span>, and <span class="highlight">visualization</span>."
-                </p>
-                <div class="cta-group fade-up delayed-4">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-project-diagram"></i> View Projects
-                    </a>
-                    <a href="#" class="btn btn-outline" target="_blank">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
+                <div class="hero-text">
+                    <p class="greeting fade-up">Hi, my name is</p>
+                    <h1 class="name fade-up delayed-1">Ester Maria Paul.</h1>
+                    <h2 class="title fade-up delayed-2">Data Analyst | Data Science Enthusiast</h2>
+                    <p class="tagline fade-up delayed-3">
+                        Turning data into actionable insights through <span class="highlight">analytics</span>, <span
+                            class="highlight">machine learning</span>, and <span class="highlight">visualization</span>.
+                    </p>
+                    <div class="cta-group fade-up delayed-4">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-project-diagram"></i> View Projects
+                        </a>
+                        <a href="media/EsterResume.pdf" class="btn btn-outline" target="_blank" download>
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image fade-up delayed-5">
+                    <img src="images/profile.png" alt="Ester Maria Paul" class="profile-photo">
                 </div>
             </div>
 
@@ -386,18 +394,22 @@
                     </div>
 
                     <div class="contact-form-container">
-                        <form class="contact-form" id="contactForm">
+                        <form class="contact-form" id="contactForm"
+                            action="https://formsubmit.co/estermariapaul8@gmail.com" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Name" required>
+                                <input type="text" id="name" name="name" placeholder="Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" placeholder="Email" required>
+                                <input type="email" id="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="subject" placeholder="Subject" required>
+                                <input type="text" id="subject" name="_subject" placeholder="Subject" required>
                             </div>
                             <div class="form-group">
-                                <textarea id="message" rows="5" placeholder="Message" required></textarea>
+                                <textarea id="message" name="message" rows="5" placeholder="Message"
+                                    required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary submit-btn">
                                 Send Message <i class="fas fa-paper-plane"></i>
